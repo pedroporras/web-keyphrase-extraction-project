@@ -1,0 +1,15 @@
+version: "3.3"
+services:
+    main-app:
+        build:
+            context: .
+            dockerfile: build/development.Dockerfile
+        environment:
+          - secret=secret
+          - algorithm=HS256
+        ports:
+            - "8000:8000"
+        command: uvicorn main:app --reload --host 0.0.0.0
+        #image: ${DOCKER_REGISTRY}/main-app:${VERSION}
+        volumes:
+          - ./app:/app

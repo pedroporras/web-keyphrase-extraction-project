@@ -1,0 +1,10 @@
+version: "3.3"
+services:
+    main-app:
+        build:
+            context: .
+            dockerfile: build/production.Dockerfile
+        #image: ${DOCKER_REGISTRY}/main-app:${VERSION}
+        ports:
+            - "80:80"
+        
