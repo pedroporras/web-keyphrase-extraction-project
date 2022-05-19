@@ -1,5 +1,4 @@
 from fastapi import FastAPI, Body, Depends
-from model import PostSchema, UserSchema, UserLoginSchema
 from auth.jwt_handler import signJWT, decodeJWT
 from auth.jwt_bearer import jwtBearer
 from db.session import SessionLocal, engine

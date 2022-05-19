@@ -3,3 +3,4 @@
 #from .token import Token, TokenPayload
 #from .user import User, UserCreate, UserInDB, UserUpdate
 from .user import User
+from .sentiment_analysis import PredictionRequest
