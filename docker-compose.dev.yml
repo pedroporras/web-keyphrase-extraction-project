@@ -1,15 +1,35 @@
 version: "3.3"
 services:
-    main-app:
-        build:
-            context: .
-            dockerfile: build/development.Dockerfile
+    # main-app:
+    #     build:
+    #         context: .
+    #         dockerfile: build/development.Dockerfile
+    #     environment:
+    #       - secret=secret
+    #       - algorithm=HS256
+    #     ports:
+    #         - "8000:8000"
+    #     command: uvicorn main:app --reload --host 0.0.0.0
+    #     #image: ${DOCKER_REGISTRY}/main-app:${VERSION}
+    #     volumes:
+    #       - ./app:/app
+
+    postgresqldb:
+        image: postgres:12
         environment:
-          - secret=secret
-          - algorithm=HS256
+            - POSTGRES_PASSWORD=Y78N86BWnQv5
+            - PGDATA=/var/lib/postgresql/data/pgdata
         ports:
-            - "8000:8000"
-        command: uvicorn main:app --reload --host 0.0.0.0
-        #image: ${DOCKER_REGISTRY}/main-app:${VERSION}
-        volumes:
-          - ./app:/app
+            - 5432:5432
+        extra_hosts:
+        - "host.docker.internal:host-gateway"
+
+    pgadmin:
+        image: dpage/pgadmin4
+        environment:
+            - PGADMIN_DEFAULT_EMAIL=user@domain.com
+            - PGADMIN_DEFAULT_PASSWORD=SuperSecret
+        ports:
+            - 8090:80
+        extra_hosts:
+        - "host.docker.internal:host-gateway"
