@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
 
-import schemas
-from core.config import settings
-from db.base import Base
-from db.session import engine
+import app.schemas
+from app.core.config import settings
+from app.db.base import Base
+from app.db.session import engine
 
 # make sure all SQL Alchemy models are imported (app.db.base) before initializing DB
 # otherwise, SQL Alchemy might fail to initialize relationships properly
